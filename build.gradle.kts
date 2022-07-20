@@ -5,7 +5,8 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.0"       // FAILS BUILD
+    // kotlin("jvm") version "1.6.21"       // BUILD SUCCEEDS
     `java-library`
 }
 
@@ -22,8 +23,9 @@ tasks{
     kotlinOptions.freeCompilerArgs += listOf(
       "-opt-in=kotlin.RequiresOptIn",
       "-opt-in=com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode",
-      "-Xlint:-deprecation"
+      "-Xextended-compiler-checks"
     )
+    kotlinOptions.jvmTarget = "11"
   }
 }
 
